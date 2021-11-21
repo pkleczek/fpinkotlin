@@ -7,8 +7,12 @@ fun square(n: Int) = n * n
 
 fun triple(n: Int) = n * 3
 
-fun <T, U, V> compose(f: (U) -> V, g: (T) -> U): (T) -> V = { f(g(it)) }
+//fun <T, U, V> compose(f: (U) -> V, g: (T) -> U): (T) -> V = { f(g(it)) }
 
-val add: (Int) -> (Int) -> Int = { a -> { b -> a + b} }
+val add: (Int) -> (Int) -> Int = { a -> { b -> a + b } }
 
-val compose = null // Define a value function composing two (Int) -> Int functions
+typealias IntToInt = (Int) -> Int
+
+val compose = { f: IntToInt -> { g : IntToInt -> {n : Int -> f(g(n))} } }
+
+//val compose: (IntToInt) -> (IntToInt) -> IntToInt = { x -> { y -> { z -> x(y(z)) } } }
